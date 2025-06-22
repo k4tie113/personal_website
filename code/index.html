@@ -48,16 +48,12 @@
 						
 					</header>
 					<footer>
-						<p> I'm very passionate about machine learning and game development. I love exploring new technologies and building innovative projects (see below). When I'm not working on programming projects, I enjoy challenging myself by getting involved in hackathons and coding competitions – my most recent one was a cybersecurity tournament at UIUC!</p>
-						
-						<p> Outside of school, I enjoy doing volunteering and service work, such as coaching younger students in programming at TheCoderSchool, 
-							where I help my students improve their coding skills and work on game development projects.</p>
+						<p> I'm very passionate about web development and machine learning. I enjoy exploring new technologies and building innovative projects (see below). I also enjoy challenging myself by getting involved in hackathons and coding competitions – my most recent one was a cybersecurity tournament at UIUC!</p>
 
-						<p>Health is my number one priority! Beyond coding, I stay active by running cross country and playing badminton. 
-							Whether I’m tackling a new physical challenge or optimizing algorithms, I enjoy finding new ways to challenge my limits and 
-							learn along the way.</p>
+						<p>Beyond coding, I love playing guitar (recently I've been learning some John Mayer songs) in my free time and also stay active by running cross country.
+							Whether I’m tackling a new physical challenge or optimizing algorithms, I enjoy finding new ways to improve my knowledge and challenge my limits.</p>
 						
-							<p>Check out my projects below or download my resume to see more!</p>
+							<p>Feel free to check out my projects or download my resume to see more!</p>
 						<a href="#portfolio" class="button large scrolly">View My Recent Work</a>
 					</footer>
 				</div>
@@ -73,9 +69,9 @@
 					<div class="row">
 						<div class="col-4 col-6-medium col-12-small">
 							<article class="box style2">
-								<a href="https://github.com/k4tie113/book_rec_site" class="image featured"><img src="images/resized/bookrates.png" alt="" /></a>
-								<h3><a href="https://github.com/k4tie113/book_rec_site">Book Recommendation System</a></h3>
-								<p>Recommends Goodreads books using collaborative filtering. Website made using React and Flask.</p>
+								<a href="https://bookrates.vercel.app" class="image featured"><img src="images/resized/bookrates.png" alt="" /></a>
+								<h3><a href="https://bookrates.vercel.app">Book Recommender</a></h3>
+								<p>Recommends Goodreads books based on users' past reads using collaborative filtering. Website with a React frontend and a Flask backend.</p>
 							</article>
 						</div>
 
@@ -97,7 +93,7 @@
 							<article class="box style2">
 								<a href="https://github.com/k4tie113/Fashionmodel" class="image featured"><img src="images/resized/fashion2.png" alt="" /></a>
 								<h3><a href="https://github.com/k4tie113/Fashionmodel">Fashion Detection Model</a></h3>
-								<p>My first computer vision model. Takes in dataset of black and white clothing images, classifies them based on type fashion item (ex. dress, coat). </p>
+								<p>Computer vision model that processes a dataset of black and white clothing images, classifies them based on type fashion item (ex. dress, coat). </p>
 							</article>
 						</div>
 						<div class="col-4 col-6-medium col-12-small">
@@ -122,7 +118,6 @@
 				</div>
 			</article>
 
-		<!-- Contact -->
 			<article id="contact" class="wrapper style4">
 				<div class="container medium">
 					<header>
@@ -131,19 +126,19 @@
 					</header>
 					<div class="row">
 						<div class="col-12">
-							<form method="post" action="#">
+							<form id="contact-form" method="post" action="#">
 								<div class="row">
 									<div class="col-6 col-12-small">
-										<input type="text" name="name" id="name" placeholder="Name" />
+										<input type="text" name="from_name" id="name" placeholder="Name" required />
 									</div>
 									<div class="col-6 col-12-small">
-										<input type="text" name="email" id="email" placeholder="Email" />
+										<input type="text" name="user_email" id="email" placeholder="Email" required />
 									</div>
 									<div class="col-12">
-										<input type="text" name="subject" id="subject" placeholder="Subject" />
+										<input type="text" name="subject" id="subject" placeholder="Subject" required />
 									</div>
 									<div class="col-12">
-										<textarea name="message" id="message" placeholder="Your message!"></textarea>
+										<textarea name="message" id="message" placeholder="Your message!" rows="6" required></textarea>
 									</div>
 									<div class="col-12">
 										<ul class="actions">
@@ -160,9 +155,40 @@
 							<li>&copy; 2025 Katie Li. All rights reserved.</li>
 							<li>Template adapted from <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
-					</footer>					
+					</footer>                   
 				</div>
 			</article>
+			
+			<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+			<script type="text/javascript">
+				(function() {
+					emailjs.init("7xBLmLdcs8AM0Lkst");
+				})();
+			
+				const contactForm = document.getElementById('contact-form');
+			
+	
+				contactForm.addEventListener('submit', function(event) {
+					event.preventDefault(); 
+			
+					const formData = {
+						from_name: document.getElementById('name').value,
+						user_email: document.getElementById('email').value,
+						subject: document.getElementById('subject').value,
+						message: document.getElementById('message').value
+					};
+			
+					emailjs.send("service_01so9rc", "template_zmzas6w", formData)
+						.then(function(response) {
+							console.log('SUCCESS!', response.status, response.text);
+							alert('Your message has been sent successfully!');
+							contactForm.reset();
+						}, function(error) {
+							console.log('FAILED...', error);
+							alert('Failed to send your message. Please try again later.');
+						});
+				});
+			</script>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
