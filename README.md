@@ -1,1 +1,1 @@
-This is my personal website. Check out katie-li.vercel.app
+THIS REPO IS NOW OUTDATED. I MOVED WEBSITES
